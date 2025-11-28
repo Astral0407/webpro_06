@@ -1,0 +1,17 @@
+<h1>駅データの削除確認</h1>
+
+<p>以下の駅データを削除しますか？</p>
+
+<ul>
+  <li>ID: <%= data.id %></li>
+  <li>コード: <%= data.code %></li>
+  <li>駅名: <%= data.name %></li>
+  <li>乗換: <%= data.change %></li>
+  <li>利用者数: <%= data.passengers %></li>
+  <li>距離: <%= data.distance %> km</li>
+</ul>
+
+<form action="/keiyo2/delete/<%= id %>" method="POST">
+  <button type="submit">削除する</button>
+  <a href="/keiyo2">キャンセル</a>
+</form>
