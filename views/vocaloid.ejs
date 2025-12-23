@@ -2,36 +2,36 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>京葉線の駅</title>
+  <title>ボカロ曲</title>
 </head>
 <body>
-  <h2>京葉線の駅一覧</h2>
+  <h2>ボカロ曲一覧</h2>
 
   <table border="1">
     <tr>
       <th>ID</th>
-      <th>駅コード</th>
-      <th>駅名</th>
+      <th>動画ID</th>
+      <th>曲名</th>
       <th>操作</th>
     </tr>
 
     <% data.forEach((row, index) => { %>
       <tr>
         <td><%= row.id %></td>
-        <td><%= row.code %></td>
-        <td><a href="/keiyo2/<%= index %>"><%= row.name %></a></td>
+        <td><%= row.url %></td>
+        <td><a href="/vocaloid/<%= index %>"><%= row.name %></a></td>
 
         <!-- 編集と削除の新しい列 -->
         <td>
-          <a href="/keiyo2/edit/<%= index %>">編集</a>
+          <a href="/vocaloid/edit/<%= index %>">編集</a>
           |
-          <a href="/keiyo2/delete/<%= index %>">削除</a>
+          <a href="/vocaloid/delete/<%= index %>">削除</a>
         </td>
       </tr>
     <% }) %>
   </table>
 
   <br>
-  <a href="/keiyo2/create">追加</a>
+  <a href="/vocaloid/create">追加</a>
 </body>
 </html>

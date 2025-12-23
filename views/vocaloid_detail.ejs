@@ -8,11 +8,14 @@
   <h2><%= data.name %>の詳細</h2>
   <table>
     <tr><th>項目</th><th>データ</th></tr>
-    <tr><td>ID</td><td><%= data.code %></td></tr>
-    <tr><td>駅名</td><td><%= data.name %></td></tr>
-    <tr><td>乗り換え線</td><td><%= data.change %></td></tr>
-    <tr><td>東京駅からの距離</td><td><%= data.distance %></td></tr>
+    <tr><td>動画ID</td><td><%= data.url %></td></tr>
+    <tr><td>曲名</td><td><%= data.name %></td></tr>
+    <tr><td>再生回数</td><td><%= data.plays %></td></tr>
+    <tr><td>投稿日</td><td><%= data.day %></td></tr>
+    <tr><td>作曲者</td><td><%= data.composer %></td></tr>
+    <tr><td>作詞者</td><td><%= data.lyricist %></td></tr>
+    <tr><td>イラストレーター</td><td><%= data.illustrator %></td></tr>
   </table>
-  <a href="/keiyo2/edit/<%= id %>">編集</a>
-  <a href="/keiyo2">駅一覧に戻る</a>
+  <a href="/vocaloid/edit/<%= id %>">編集</a>
+  <a href="/vocaloid">ボカロ曲一覧に戻る</a>
 </body>
