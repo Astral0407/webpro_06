@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>削除確認</title>
+</head>
+<body>
+  <h1>以下の元素データを削除しますか？</h1>
+
+  <ul>
+    <li>ID: <%= data.id %></li>
+    <li>原子番号: <%= data.number %></li>
+    <li>元素名: <%= data.name %></li>
+    <li>元素記号: <%= data.symbol %></li>
+    <li>原子量: <%= data.amount %></li>
+    <li>標準状態: <%= data.state %></li>
+    <li>詳細: <%= data.information %></li>
+  </ul>
+
+  <form action="/element/delete/<%= id %>" method="POST">
+    <input type="submit" value="削除する">
+  </form>
+
+<a href="/element/delete/<%= id %>">削除</a>
+</body>
+</html>

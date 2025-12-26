@@ -1,0 +1,20 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の詳細</h2>
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>原子番号</td><td style="text-align: center;"><%= data.number %></td></tr>
+    <tr><td>元素名</td><td style="text-align: center;"><%= data.name %></td></tr>
+    <tr><td>元素記号</td><td style="text-align: center;"><%= data.symbol %></td></tr>
+    <tr><td>原子量</td><td style="text-align: center;"><%= data.amount %></td></tr>
+    <tr><td>標準状態</td><td style="text-align: center;"><%= data.state %></td></tr>
+    <tr><td>詳細</td><td><%= data.information %></td></tr>
+  </table>
+  <a href="/element/edit/<%= id %>">編集</a>
+  <a href="/element">元素周期表一覧に戻る</a>
+</body>

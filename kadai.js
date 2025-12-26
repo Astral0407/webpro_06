@@ -40,7 +40,7 @@ app.get("/vocaloid/:number", (req, res) => {
 });
 
 // Delete
-app.get("/kvocaloid/delete/:number", (req, res) => {
+app.get("/vocaloid/delete/:number", (req, res) => {
   // 本来は削除の確認ページを表示する
   // 本来は削除する番号が存在するか厳重にチェックする
   // 本来ならここにDBとのやり取りが入る
@@ -48,13 +48,13 @@ app.get("/kvocaloid/delete/:number", (req, res) => {
 
   // 配列範囲チェック
   if (!vocaloid[number]) {
-    return res.status(404).send("指定された駅データが存在しません。");
+    return res.status(404).send("指定された曲データが存在しません。");
   }
 
   const detail = vocaloid[number];
 
   // 削除確認ページを表示
-  res.render('vocaloid_delete_confirm', { id: number, data: detail });
+  res.render('vocaloid_delete', { id: number, data: detail });
 });
 
 // Delete (Execute)
@@ -63,7 +63,7 @@ app.post("/vocaloid/delete/:number", (req, res) => {
 
   // 存在チェック
   if (!vocaloid[number]) {
-    return res.status(404).send("指定された駅データが存在しません。");
+    return res.status(404).send("指定された曲データが存在しません。");
   }
 
   // 削除実行
@@ -113,5 +113,114 @@ app.post("/vocaloid/update/:number", (req, res) => {
   console.log( vocaloid );
   res.redirect('/vocaloid' );
 });
+
+let element = [
+  { id:1, number:1, name:"水素", symbol:"H", amount:1.00794, state:"気体" ,information:"最も軽い元素で，宇宙で最も多く存在する"},
+  { id:2, number:2, name:"ヘリウム", symbol:"He", amount:4.00260, state:"気体" ,information:"空気より軽く，無色・無臭で化学的に非常に安定した希ガス元素"},
+  { id:3, number:3, name:"リチウム", symbol:"Li", amount:6.941, state:"固体" ,information:"最も軽い金属で、銀白色のアルカリ金属"},
+  { id:4, number:4, name:"ベリリウム", symbol:"Be", amount:9.01218,state:"固体" ,information:"軽量で高強度な金属元素で，緑柱石の主成分"},
+  { id:5, number:5, name:"ホウ素", symbol:"B", amount:10.81, state:"固体" ,information:"単体は高融点かつ高沸点な硬くて脆い固体であり，金属元素と非金属元素の中間の性質を示す半金属"},
+  { id:6, number:6, name:"炭素", symbol:"C", amount:12.01, state:"固体" ,information:"単体・化合物両方においてきわめて多様な形状をとることができる"},
+  { id:7, number:7, name:"窒素", symbol:"N", amount:14.007, state:"気体",information:"空気の約78%を占める無色無臭の気体で，常温で非常に安定した不活性ガス" },
+  { id:8, number:8, name:"酸素", symbol:"O", amount:15.9994, state:"気体",information:"空気の約21%を占める無色無臭の気体で，生物が呼吸してエネルギーを作るのに不可欠，また物が燃えるのを助ける性質を持つ" },
+  { id:9, number:9, name:"フッ素", symbol:"F", amount:18.9984, state:"気体",information:"自然界に広く存在する必須ミネラル，またはその単体" },
+  { id:10, number:10, name:"ネオン", symbol:"Ne", amount:20.180, state:"気体",information:"無色で反応性が低い気体で，高電圧をかけると特徴的な赤橙色に輝く" },
+];
+
+// 一覧
+app.get("/element", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('element', {data: element} );
+});
+
+// Create
+app.get("/element/create", (req, res) => {
+  res.redirect('/public/element.html');
+});
+
+// Read
+app.get("/element/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = element[ number ];
+  res.render('element_detail', {id: number, data: detail} );
+});
+
+// Delete
+app.get("/element/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+
+  // 配列範囲チェック
+  if (!element[number]) {
+    return res.status(404).send("指定された元素データが存在しません。");
+  }
+
+  const detail = element[number];
+
+  // 削除確認ページを表示
+  res.render('element_delete', { id: number, data: detail });
+});
+
+// Delete (Execute)
+app.post("/element/delete/:number", (req, res) => {
+  const number = req.params.number;
+
+  // 存在チェック
+  if (!element[number]) {
+    return res.status(404).send("指定された元素データが存在しません。");
+  }
+
+  // 削除実行
+  element.splice(number, 1);
+
+  res.redirect('/element');
+});
+
+
+
+
+// Create
+app.post("/element", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = element.length + 1;
+  const url = req.body.number;
+  const name = req.body.name;
+  const plays = req.body.symbol;
+  const day = req.body.amount;
+  const composer = req.body.state;
+  const lyricist = req.body.information;
+  element.push( { id: id, number: number, name: name, symbol: symbol, amount: amount, state: state, information:information } );
+  console.log( element );
+  res.render('element', {data: element} );
+});
+
+// Edit
+app.get("/element/edit/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = element[ number ];
+  res.render('element_edit', {id: number, data: detail} );
+});
+
+// Update
+app.post("/element/update/:number", (req, res) => {
+  // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  element[req.params.number].number = req.body.number;
+  element[req.params.number].name = req.body.name;
+  element[req.params.number].symbol = req.body.symbol;
+  element[req.params.number].amount = req.body.amount;
+  element[req.params.number].state = req.body.state;
+  element[req.params.number].information = req.body.information;
+  console.log( element );
+  res.redirect('/element' );
+});
+
+
+
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
