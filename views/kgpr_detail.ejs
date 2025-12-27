@@ -1,0 +1,20 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の詳細</h2>
+  <table border="1">
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>団員No</td><td style="text-align: center;"><%= data.number %></td></tr>
+    <tr><td>名前</td><td style="text-align: center;"><%= data.name %></td></tr>
+    <tr><td>能力</td><td style="text-align: center;"><%= data.ability %></td></tr>
+    <tr><td>誕生日</td><td style="text-align: center;"><%= data.birthday %></td></tr>
+    <tr><td>テーマ曲</td><td style="text-align: center;"><%= data.music %></td></tr>
+    <tr><td>詳細</td><td style="text-align: left;"><%= data.information %></td></tr>
+  </table>
+  <a href="/kgpr/edit/<%= id %>">編集</a>
+  <a href="/kgpr">カゲプロキャラ表一覧に戻る</a>
+</body>

@@ -186,12 +186,12 @@ app.post("/element/delete/:number", (req, res) => {
 app.post("/element", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   const id = element.length + 1;
-  const url = req.body.number;
+  const number = req.body.number;
   const name = req.body.name;
-  const plays = req.body.symbol;
-  const day = req.body.amount;
-  const composer = req.body.state;
-  const lyricist = req.body.information;
+  const symbol = req.body.symbol;
+  const amount = req.body.amount;
+  const state = req.body.state;
+  const information = req.body.information;
   element.push( { id: id, number: number, name: name, symbol: symbol, amount: amount, state: state, information:information } );
   console.log( element );
   res.render('element', {data: element} );
@@ -220,6 +220,113 @@ app.post("/element/update/:number", (req, res) => {
 });
 
 
+
+let kgpr = [
+  { id:1, number:1, name:"キド ", ability:"目を隠す", birthday:"1月2日", music:"メカクシコード / 失想ワアド" ,information:"メカクシ団団長を務める少女"},
+  { id:2, number:2, name:"セト", ability:"目を盗む", birthday:"3月28日 ", music:"少年ブレイヴ / 空想フォレスト" ,information:"緑色のつなぎを着た青年"},
+  { id:3, number:3, name:"カノ", ability:"目を欺く", birthday:"5月10日", music:"夜咄ディセイブ" ,information:"大人びた外見でつり目が特徴的な青年"},
+  { id:4, number:4, name:"マリー ", ability:"目を合わせる", birthday:"7月21日",music:"空想フォレスト / マリーの架空世界" ,information:"メデューサと人間のクォーターの少女"},
+  { id:5, number:5, name:"モモ", ability:"目を奪う", birthday:"2月14日", music:"如月アテンション / オツキミリサイタル" ,information:"シンタローの妹で，高校1年生の人気アイドル"},
+  { id:6, number:6, name:"エネ", ability:"目を覚ます", birthday:"-", music:"人造エネミー / ヘッドフォンアクター / エネの電脳紀行 / 夕景イエスタデイ" ,information:"シンタローのパソコンに居つく電脳体の少女"},
+  { id:7, number:7, name:"シンタロー", ability:"目に焼き付ける", birthday:"4月30日", music:"人造エネミー / 透明アンサー / ロスタイムメモリー",information:"本作の主人公．パソコンに入り浸っている引きこもりの18歳の青年" },
+  { id:8, number:8, name:"ヒビヤ", ability:"目を凝らす", birthday:"11月4日", music:"カゲロウデイズ / オツキミリサイタル",information:"ごく平凡な田舎に住む少年" },
+  { id:9, number:9, name:"コノハ", ability:"目を醒ます", birthday:"12月24日", music:"コノハの世界事情 / アウターサイエンス / 夕景イエスタデイ / サマータイムレコード",information:"白髪の青年の姿をした記憶喪失の人造人間" },
+  { id:10, number:0, name:"アヤノ", ability:"目をかける", birthday:"11月22日", music:"透明アンサー / アヤノの幸福理論 / アディショナルメモリー",information:"シンタローと中学からの同級生．真夏でもいつも赤いマフラーをしている" },
+];
+
+// 一覧
+app.get("/kgpr", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('kgpr', { data: kgpr });
+});
+
+// Create
+app.get("/kgpr/create", (req, res) => {
+  res.redirect('/public/kgpr.html');
+});
+
+// Read
+app.get("/kgpr/:number", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const number = req.params.number;
+  const detail = kgpr[number];
+  res.render('kgpr_detail', { id: number, data: detail });
+});
+
+// Delete
+app.get("/kgpr/delete/:number", (req, res) => {
+  const number = req.params.number;
+
+  // 配列範囲チェック
+  if (!kgpr[number]) {
+    return res.status(404).send("指定されたデータが存在しません。");
+  }
+
+  const detail = kgpr[number];
+
+  // 削除確認ページを表示
+  res.render('kgpr_delete', { id: number, data: detail });
+});
+
+// Delete (Execute)
+app.post("/kgpr/delete/:number", (req, res) => {
+  const number = req.params.number;
+
+  // 存在チェック
+  if (!kgpr[number]) {
+    return res.status(404).send("指定されたデータが存在しません。");
+  }
+
+  // 削除実行
+  kgpr.splice(number, 1);
+
+  res.redirect('/kgpr');
+});
+
+// Create
+app.post("/kgpr", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  const id = kgpr.length + 1;
+
+  const number = req.body.number;
+  const name = req.body.name;
+  const ability = req.body.ability;
+  const birthday = req.body.birthday;
+  const music = req.body.music;
+  const information = req.body.information;
+
+  kgpr.push({
+    id: id,
+    number: number,
+    name: name,
+    ability: ability,
+    birthday: birthday,
+    music: music,
+    information: information
+  });
+
+  console.log(kgpr);
+  res.render('kgpr', { data: kgpr });
+});
+
+// Edit
+app.get("/kgpr/edit/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = kgpr[number];
+  res.render('kgpr_edit', { id: number, data: detail });
+});
+
+// Update
+app.post("/kgpr/update/:number", (req, res) => {
+  kgpr[req.params.number].number = req.body.number;
+  kgpr[req.params.number].name = req.body.name;
+  kgpr[req.params.number].ability = req.body.ability;
+  kgpr[req.params.number].birthday = req.body.birthday;
+  kgpr[req.params.number].music = req.body.music;
+  kgpr[req.params.number].information = req.body.information;
+  console.log(kgpr);
+  res.redirect('/kgpr');
+});
 
 
 

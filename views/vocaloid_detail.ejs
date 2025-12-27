@@ -6,9 +6,21 @@
 </head>
 <body>
   <h2><%= data.name %>の詳細</h2>
-  <table>
+  
+  <div>
+    <img src="https://nicovideo.cdn.nimg.jp/thumbnails/<%= data.url.replace('sm', '') %>/<%= data.url.replace('sm', '') %>" alt="サムネイル" style="width: 300px; height: auto;">
+  </div>
+
+  <table border="1">
     <tr><th>項目</th><th>データ</th></tr>
-    <tr><td>動画ID</td><td><%= data.url %></td></tr>
+    <tr>
+      <td>動画リンク</td>
+      <td>
+        <a href="https://www.nicovideo.jp/watch/<%= data.url %>" target="_blank">
+          <%= data.url %> 
+        </a>
+      </td>
+    </tr>
     <tr><td>曲名</td><td><%= data.name %></td></tr>
     <tr><td>再生回数</td><td><%= data.plays %></td></tr>
     <tr><td>投稿日</td><td><%= data.day %></td></tr>

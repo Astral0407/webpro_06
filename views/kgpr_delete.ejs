@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>削除確認</title>
+</head>
+<body>
+  <h1>以下のキャラデータを削除しますか？</h1>
+
+  <ul>
+    <li>ID: <%= data.id %></li>
+    <li>団員No: <%= data.number %></li>
+    <li>名前: <%= data.name %></li>
+    <li>能力: <%= data.ability %></li>
+    <li>誕生日: <%= data.birthday %></li>
+    <li>テーマ曲: <%= data.music %></li>
+    <li>詳細: <%= data.information %></li>
+  </ul>
+
+  <form action="/kgpr/delete/<%= id %>" method="POST">
+    <input type="submit" value="削除する">
+  </form>
+
+<a href="/kgpr/delete/<%= id %>">削除</a>
+</body>
+</html>
