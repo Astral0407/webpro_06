@@ -5,20 +5,23 @@
     <title>元素周期表</title>
 </head>
 <body>
+    <h1>データを追加する</h1>
     <form action="/element" method="POST">
         <input type="text" name="number" required>
-        <label for="number">number:</label><br>
+        <label for="number">原子番号</label><br>
         <input type="text" name="name" required>
-        <label for="name">name:</label><br>
+        <label for="name">元素名</label><br>
         <input type="text" name="symbol">
-        <label for="symbol">symbol:</label><br>
+        <label for="symbol">元素記号</label><br>
         <input type="text" name="amount" required>
-        <label for="amount">amount:</label><br>
+        <label for="amount">原子量</label><br>
         <input type="text" name="state" required>
-        <label for="state">state:</label><br>
+        <label for="state">標準状態</label><br>
         <input type="text" name="information" required>
-        <label for="information">information:</label><br>
+        <label for="information">詳細</label><br>
         <input type="submit" values="登録">
     </form>
+    <br>
+    <a href="/element">元素周期表一覧に戻る</a>
 </body>
 </html>

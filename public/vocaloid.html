@@ -2,25 +2,28 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ボカロ</title>
+    <title>ボカロ曲データの追加</title>
 </head>
 <body>
+    <h1>データを追加する</h1>
     <form action="/vocaloid" method="POST">
         <input type="text" name="url" required>
-        <label for="url">url:</label><br>
+        <label for="url">動画ID</label><br>
         <input type="text" name="name" required>
-        <label for="name">name:</label><br>
+        <label for="name">曲名</label><br>
         <input type="text" name="plays">
-        <label for="plays">plays:</label><br>
+        <label for="plays">再生回数</label><br>
         <input type="text" name="day" required>
-        <label for="day">day:</label><br>
+        <label for="day">投稿日</label><br>
         <input type="text" name="composer" required>
-        <label for="composer">composer:</label><br>
+        <label for="composer">作曲者</label><br>
         <input type="text" name="lyricist" required>
-        <label for="lyricist">lyricist:</label><br>
+        <label for="lyricist">作詞者</label><br>
         <input type="text" name="illustrator" required>
-        <label for="illustrator">illustrator:</label><br>
+        <label for="illustrator">イラストレーター</label><br>
         <input type="submit" values="登録">
     </form>
+    <br>
+    <a href="/vocaloid">ボカロ曲一覧に戻る</a>
 </body>
 </html>

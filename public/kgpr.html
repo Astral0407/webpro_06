@@ -5,20 +5,23 @@
     <title>カゲプロキャラ表</title>
 </head>
 <body>
+    <h1>データを追加する</h1>
     <form action="/kgpr" method="POST">
         <input type="text" name="number" required>
-        <label for="number">number:</label><br>
+        <label for="number">団員No</label><br>
         <input type="text" name="name" required>
-        <label for="name">name:</label><br>
+        <label for="name">名前</label><br>
         <input type="text" name="ability">
-        <label for="ability">ability:</label><br>
+        <label for="ability">能力</label><br>
         <input type="text" name="birthday" required>
-        <label for="birthday">birthday:</label><br>
+        <label for="birthday">誕生日</label><br>
         <input type="text" name="music" required>
-        <label for="music">music:</label><br>
+        <label for="music">テーマ曲</label><br>
         <input type="text" name="information" required>
-        <label for="information">information:</label><br>
+        <label for="information">詳細</label><br>
         <input type="submit" values="登録">
     </form>
+    <br>
+    <a href="/kgpr">カゲプロキャラ一覧に戻る</a>
 </body>
 </html>
